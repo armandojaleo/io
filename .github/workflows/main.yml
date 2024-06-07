@@ -30,7 +30,7 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git clone --single-branch --branch release https://github.com/${{ github.repository }} release
-          rsync -av --delete build/ release/
+          rsync -av --delete-after ./build/ ./
           cd release
           git add .
           git commit -m 'Deploy to release branch' || echo "No changes to commit"
