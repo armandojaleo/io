@@ -29,8 +29,8 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git checkout release
+          git checkout -b release || git checkout release
           rsync -av --delete-after ./build/ ./
           git add .
           git commit -m 'Deploy to release branch' || echo "No changes to commit"
-          git push --force origin release
+          git push --set-upstream origin release --force
